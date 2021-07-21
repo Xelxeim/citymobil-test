@@ -1,0 +1,37 @@
+.App {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+}
+
+.content {
+  width: calc(100% - 224px);
+  padding: 32px 40px;
+  height: 100%;
+}
+
+span {
+  font-family: Citymobil_v0-2;
+  font-size: 36px;
+  line-height: 44px;
+  color: #707070;
+}
+
+@media (max-width: 678px) {
+  .content {
+    width: 100%;
+    padding: 8px 10px;
+    &__btn {
+      margin-left: 0;
+      margin-top: 4px;
+    }
+  }
+}

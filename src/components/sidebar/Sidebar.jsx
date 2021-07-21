@@ -2,9 +2,9 @@ import './Sidebar.scss';
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
-      
-    </div>
+    <aside className="sidebar">
+      <span>sidebar</span>
+    </aside>
   );
 }
 

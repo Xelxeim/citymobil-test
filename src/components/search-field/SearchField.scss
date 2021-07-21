@@ -1,0 +1,55 @@
+.search-field {
+  display: flex;
+  align-items: center;
+  &__input {
+    width: 100%;
+    min-height: 42px;
+    font-family: IBM Plex Mono;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #7B8395;
+
+    &[type=text]{
+      padding-left: 40px;
+    }
+  }
+
+  &__btn {
+    margin-left: 8px;
+    min-width: 171px;
+    min-height: 42px;
+    background-color: #7B8395;
+    color: #FFFFFF;
+    border: none;
+  }
+
+  label {
+    width: 100%;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 13px;
+      bottom: 13px;
+      width: 16px;
+      background: url("../../img/search.svg") center / contain no-repeat;
+    }
+  }
+}
+
+@media (max-width: 678px) {
+  .search-field {
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &__btn {
+      margin-left: 0;
+      margin-top: 4px;
+    }
+  }
+}

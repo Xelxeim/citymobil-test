@@ -1,0 +1,17 @@
+.info-block {
+  min-height: 42px;
+  margin: 16px 0 32px 0;
+  display: flex;
+  align-items: center;
+  background: rgba(240, 242, 244, 0.5);
+  border: 1px solid #DEE5EB;
+  box-sizing: border-box;
+  box-shadow: inset -1px 0px 0px rgba(198, 209, 221, 0.5);
+  font-family: IBM Plex Mono;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #7B8395;
+  hyphens: auto;
+}

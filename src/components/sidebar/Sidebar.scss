@@ -1,0 +1,16 @@
+.sidebar {
+  width: 100%;
+  min-width: 224px;
+  flex: 0 1 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E4E5E6;
+  box-shadow: inset 0px -1px 0px rgba(150, 150, 150, 0.25);
+}
+
+@media (max-width: 678px) {
+  .sidebar {
+    display: none;
+  }
+}
