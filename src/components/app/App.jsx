@@ -11,11 +11,13 @@ import './App.scss';
 
 import apiInteractor from '../../services/api-interactor';
 
-
 const App = () => {
 
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [pattern, setPattern] = useState("")
+
+  const onClickHandler = (value) => setPattern(value);
 
   useEffect(() => { 
     apiInteractor.getData("https://city-mobil.ru/api/cars")
@@ -25,21 +27,19 @@ const App = () => {
 
   const renderedContent = () => {
     if (!data.tariffs_list) return <Spinner/>;
-
     const tableHeaders = [];
     tableHeaders.push("Марка и модель", ...data.tariffs_list);
     const cars = data.cars;
-    return <Table tableHeaders={tableHeaders} cars={cars} />
+    return <Table tableHeaders={tableHeaders} cars={cars} filter={pattern}/>
   }
 
-  console.log(data);
   return (
     <div className="App">
       <Header />
       <div className="main">
         <Sidebar />
         <section className="content">
-          <SearchField />
+          <SearchField onClickHandler={onClickHandler}/>
           {loading ? <Spinner /> : renderedContent()}
           <InfoBlock />
         </section>
