@@ -1,30 +1,28 @@
+import TableItem from '../table-item';
 import './Table.scss';
 
-const Table = () => {
+const Table = ({ tableHeaders, cars }) => {
+
+  const headers = () => {
+    return tableHeaders.map((item, index) => <th key={index}>{item}</th>)
+  }
+
+  const carList = () => {
+    return cars.map((item, index) => {
+      const { mark, model, tariffs } = item;
+      const carName = `${mark} ${model}`;
+      return <TableItem key={`c-${index}`} carName={carName} tariffs={tariffs} />
+    })
+  }
+
   return (
     <div className="container">
       <table className="table">
         <tbody>
           <tr>
-            <th>Марка и модель</th>
-            <th>Стандарт</th>
-            <th>Комфорт</th>
-            <th>Бизнес</th>
-            <th>Комфорт+</th>
-            <th>Эконом</th>
-            <th>Минивен</th>
-            <th>Лайт</th>
+            {headers()}
           </tr>
-          <tr>
-            <td>Вишневая семерка</td>
-            <td>1911</td>
-            <td>1923</td>
-            <td>2000</td>
-            <td>3221</td>
-            <td>1231</td>
-            <td>3333</td>
-            <td>4444</td>
-          </tr>
+          {carList()}
         </tbody>
         
       </table>
