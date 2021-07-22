@@ -17,6 +17,8 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [pattern, setPattern] = useState("")
   const [currentCar, setCurrentCar] = useState("");
+  const [sortDirection, setSortDirection] = useState("asc");
+  const [sortHeader, setSortHeader] = useState(0); // index of sort-header in array
 
   const onSearchBtnClickHandler = (value) => setPattern(value);
   const onCarClickHandler = (element) => { 
@@ -27,6 +29,24 @@ const App = () => {
       return element;
     });
   };
+  const onHeaderClick = (headerIndex) => {
+    switch(sortDirection) {
+      case "desc":
+        setSortDirection("asc");
+        break;
+      case "asc":
+        setSortDirection("desc");
+        break;
+      default:
+        setSortDirection("asc");
+        break;
+    }
+
+    if(headerIndex !== sortHeader) {
+      setSortDirection("asc");
+    }
+    setSortHeader(headerIndex);
+  }
 
   useEffect(() => { 
     apiInteractor.getData("https://city-mobil.ru/api/cars")
@@ -39,7 +59,15 @@ const App = () => {
     const tableHeaders = [];
     tableHeaders.push("Марка и модель", ...data.tariffs_list);
     const cars = data.cars;
-    return <Table onClickHandler={onCarClickHandler} tableHeaders={tableHeaders} cars={cars} filter={pattern} />
+    return <Table 
+      onClickHandler={onCarClickHandler} 
+      onHeaderClick={onHeaderClick}
+      tableHeaders={tableHeaders} 
+      sortDirection={sortDirection} 
+      sortHeader={sortHeader} 
+      cars={cars} 
+      filter={pattern} 
+    />
   }
 
   return (

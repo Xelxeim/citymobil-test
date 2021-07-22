@@ -11,8 +11,16 @@
 }
 
 th {
-  padding: 10px; 
+  padding: 10px;
+  position: relative; 
   border: 1px solid #000000;
+  cursor: pointer;
+
+  img {
+    top: 40%;
+    position: absolute;
+    right: 5px;
+  }
 }
 
 td {
