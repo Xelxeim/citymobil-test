@@ -6,7 +6,7 @@ import Footer from '../footer';
 import Table from '../table';
 import SearchField from '../search-field';
 import InfoBlock from '../info-block';
-import Spinner from '../sidebar'
+import Spinner from '../spinner';
 import './App.scss';
 
 import apiInteractor from '../../services/api-interactor';
@@ -15,6 +15,7 @@ const App = () => {
 
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [pattern, setPattern] = useState("")
   const [currentCar, setCurrentCar] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
@@ -51,11 +52,13 @@ const App = () => {
   useEffect(() => { 
     apiInteractor.getData("https://city-mobil.ru/api/cars")
       .then(data => setData(data))
+      .catch(error => setError(error))
       .finally(setLoading(false))
   }, [])
 
   const renderedContent = () => {
     if (!data.tariffs_list) return <Spinner />;
+    if (error) return <h1>Произошла ошибка. Попробуйте позже</h1>;
     const tableHeaders = [];
     tableHeaders.push("Марка и модель", ...data.tariffs_list);
     const cars = data.cars;

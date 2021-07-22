@@ -1,9 +1,6 @@
 class funcs {
-  filterContent = (pattern, data) => {
-    return data.toLowerCase().includes(pattern.toLowerCase());
-  }
 
-  anotherFilter = (pattern, data) => {
+  filterContent = (pattern, data) => {
     return data.filter(element => element[0].toLowerCase().includes(pattern.toLowerCase()));
   }
 

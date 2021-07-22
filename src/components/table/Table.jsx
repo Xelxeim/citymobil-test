@@ -18,13 +18,12 @@ const Table = ({ tableHeaders, cars, filter, onClickHandler, sortDirection, sort
           <img src={sortDirectionImg} alt={sortDirection} />
         </th> :
         <th onClick={() => onHeaderClick(index)} key={index}>{item}</th>
-        
     })
   }
 
   const carList = () => {
     const transformedList = transformCarList();
-    const filteredList = funcs.anotherFilter(filter, transformedList);
+    const filteredList = funcs.filterContent(filter, transformedList);
     const sortedList = funcs.sortData(filteredList, sortHeader, sortDirection);
     return sortedList.map((item, index) => {
       const [carName, tariffs] = item;
