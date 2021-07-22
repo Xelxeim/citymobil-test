@@ -16,8 +16,17 @@ const App = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [pattern, setPattern] = useState("")
+  const [currentCar, setCurrentCar] = useState("");
 
-  const onClickHandler = (value) => setPattern(value);
+  const onSearchBtnClickHandler = (value) => setPattern(value);
+  const onCarClickHandler = (element) => { 
+    setCurrentCar((prevCar) => {
+      if (prevCar) {
+        prevCar.classList = "table__item";
+      }
+      return element;
+    });
+  };
 
   useEffect(() => { 
     apiInteractor.getData("https://city-mobil.ru/api/cars")
@@ -26,11 +35,11 @@ const App = () => {
   }, [])
 
   const renderedContent = () => {
-    if (!data.tariffs_list) return <Spinner/>;
+    if (!data.tariffs_list) return <Spinner />;
     const tableHeaders = [];
     tableHeaders.push("Марка и модель", ...data.tariffs_list);
     const cars = data.cars;
-    return <Table tableHeaders={tableHeaders} cars={cars} filter={pattern}/>
+    return <Table onClickHandler={onCarClickHandler} tableHeaders={tableHeaders} cars={cars} filter={pattern} />
   }
 
   return (
@@ -39,9 +48,9 @@ const App = () => {
       <div className="main">
         <Sidebar />
         <section className="content">
-          <SearchField onClickHandler={onClickHandler}/>
+          <SearchField onClickHandler={onSearchBtnClickHandler} />
           {loading ? <Spinner /> : renderedContent()}
-          <InfoBlock />
+          {currentCar ? <InfoBlock currentCar={currentCar} tariffs={data.tariffs_list} /> : null}
         </section>
       </div>
       <Footer />

@@ -1,25 +1,14 @@
-.table {
-  width: 100%;
-  margin-top: 16px;
-  border-collapse: collapse; 
-  border: 1px solid #000000;
-}
-
-.container {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-th {
-  padding: 10px; 
-  border: 1px solid #000000;
-}
-
-td {
-  padding: 10px; 
-  border: 1px solid #000000;
-}
-
 .year {
   text-align: center;
+}
+
+.table__item {
+  cursor: pointer;
+  &:hover {
+    background-color: #dfd7d7;
+  }
+}
+
+.active {
+  background-color: #b8f39d;
 }
